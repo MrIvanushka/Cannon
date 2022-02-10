@@ -10,6 +10,7 @@ public class CannonMovingRouter : MonoBehaviour
     public void Initialize(Cannon cannon)
     {
         _model = cannon;
+        enabled = true;
     }
 
     private void OnEnable()

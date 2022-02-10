@@ -25,6 +25,7 @@ public class CannonShootingRouter : MonoBehaviour
     public void Initialize(Cannon cannon)
     {
         _model = cannon;
+        enabled = true;
     }
 
     private void Aim(Vector2 holdPosition)
@@ -40,6 +41,6 @@ public class CannonShootingRouter : MonoBehaviour
         if (holdingTime > _maxHoldingTime)
             holdingTime = _maxHoldingTime;
 
-        _model.Shoot();
+        _model.Shoot(holdingTime);
     }
 }

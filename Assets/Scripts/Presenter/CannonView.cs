@@ -22,6 +22,7 @@ public class CannonView : MonoBehaviour
     public void Initialize(Cannon model)
     {
         _model = model;
+        enabled = true;
     }
 
     private void Move()

@@ -3,6 +3,7 @@ using Model;
 
 public class CompositeRoot : MonoBehaviour
 {
+    [SerializeField] private CannonShooter _cannonShooter;
     [SerializeField] private CannonShootingRouter _cannonShooting;
     [SerializeField] private CannonMovingRouter _cannonMoving;
     [SerializeField] private CannonView _cannonView;
@@ -13,8 +14,6 @@ public class CompositeRoot : MonoBehaviour
         _cannonShooting.Initialize(cannon);
         _cannonView.Initialize(cannon);
         _cannonMoving.Initialize(cannon);
-        _cannonShooting.enabled = true;
-        _cannonMoving.enabled = true;
-        _cannonView.enabled = true;
+        _cannonShooter.Initialize(cannon);
     }
 }

@@ -13,7 +13,11 @@ namespace Model
 
         public event Action<Bullet> Shooting;
 
-        public Cannon(Vector2 position, float rotation) : base(position, rotation) { }
+        public Cannon(Vector2 position, float rotation) : base(position, rotation) 
+        {
+            _arsenal = new Queue<Ammunition>();
+            _arsenal.Enqueue(new DefaultAmmunition(int.MaxValue));
+        }
 
         public void SwitchAmmunition()
         {
@@ -32,10 +36,11 @@ namespace Model
             MoveTo(newPosition);
         }
 
-        public void Shoot()
+        public void Shoot(float force)
         {
-            //Ammunition currentAmmunition = _arsenal.Peek();
-            //Shooting?.Invoke(currentAmmunition.Aim(Position, Rotation, 1));
+            Ammunition currentAmmunition = _arsenal.Peek();
+            Shooting?.Invoke(currentAmmunition.Aim(Position, Rotation, force));
+            Debug.Log("Shooting");
         }
     }
 }
