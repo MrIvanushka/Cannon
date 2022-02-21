@@ -49,6 +49,21 @@ public class BulletPresenter : MonoBehaviour
 
     private void Explode()
     {
+        Collider2D[] hitObjects = Physics2D.OverlapCircleAll(_model.Position, _model.ExplosionRange);
+
+        foreach(var hitObject in hitObjects)
+        {
+            if(hitObject.TryGetComponent(out EnemyPresenter enemy))
+            {
+                enemy.TakeDamage(_model.Damage);
+            }
+        }
+
         Destroy(this.gameObject);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawSphere(transform.position, _model.ExplosionRange);
     }
 }

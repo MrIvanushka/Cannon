@@ -12,7 +12,11 @@ namespace Model
 
         private Vector2 _velocity;
 
+        public abstract float ExplosionRange { get; }
+        public abstract float Damage { get; }
+
         protected abstract float StartSpeed { get; }
+        
 
         public event Action Exploded;
 

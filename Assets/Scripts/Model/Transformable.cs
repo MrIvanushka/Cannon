@@ -3,16 +3,28 @@ using UnityEngine;
 
 namespace Model
 {
-    public abstract class Transformable : Movable
+    public interface IPoint
+    {
+        Vector2 Position { get; }
+        float Rotation { get; }
+
+        Vector2 Forward { get; }
+    }
+
+    public abstract class Transformable : IPoint
     {
         public float Rotation { get; private set; }
+        public Vector2 Position { get; private set; }
+
         public Vector2 Forward => Quaternion.Euler(0, 0, Rotation) * Vector3.up;
 
         public event Action Rotated;
-
-        public Transformable(Vector2 position, float rotation) : base(position) 
+        public event Action Moved;
+        
+        public Transformable(Vector2 position, float rotation)
         {
             Rotation = rotation;
+            Position = position;
         }
 
         public void Rotate(float newRotation)
@@ -21,5 +33,10 @@ namespace Model
             Rotated?.Invoke();
         }
 
+        public void MoveTo(Vector2 position)
+        {
+            Position = position;
+            Moved?.Invoke();
+        }
     }
 }

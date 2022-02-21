@@ -40,7 +40,6 @@ namespace Model
         {
             Ammunition currentAmmunition = _arsenal.Peek();
             Shooting?.Invoke(currentAmmunition.Aim(Position, Rotation, force));
-            Debug.Log("Shooting");
         }
     }
 }
